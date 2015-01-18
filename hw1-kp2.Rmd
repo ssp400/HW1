@@ -1,0 +1,72 @@
+---
+title: "Untitled"
+author: "Kristin Park"
+date: "Saturday, January 17, 2015"
+output: html_document
+---
+
+This is to create a table 1 for hw1data.
+Characteristics of weight, height, sex, and race in Two groups ("0" is considered as reference group" ) will be summarized in Table 1.
+
+```{r, echo=FALSE,message=FALSE, results="asis"}
+setwd("E:\\EB560\\hw")
+hw1=read.table(file="hw1data.csv", h=T,sep=",")
+#head(hw1)
+
+# For labelling we use the label()
+# function from the Hmisc package
+library(Hmisc)
+library(htmlTable)
+label(hw1$height) <- "Height"
+units(hw1$height) <- "inches"
+
+label(hw1$weight) <- "Weight"
+units(hw1$weight) <- "lbs" 
+
+hw1$group <- factor(hw1$group, levels=0:1, labels=c("Reference Group", "Case Group"))
+label(hw1$group) <- "Group"
+
+hw1$race <- factor(hw1$race, levels=0:1, labels=c("Non-White", "White"))
+label(hw1$race) <- "Race"
+
+
+
+hw1$sex <- factor(hw1$sex, levels=0:1, labels=c("Female", "Male"))
+label(hw1$sex) <- "Sex"
+library(Gmisc)
+getDescriptionStatsBy(x = hw1$height, 
+                      by = hw1$group)
+getTable1Stats <- function(x, digits = 1, ...){
+  getDescriptionStatsBy(x = x, 
+                        by = hw1$group,
+                        digits = digits,
+                        header_count = TRUE,
+                        ...)
+  
+}
+getTable1Stats(hw1$height, use_units = TRUE)
+getTable1Stats(hw1$weight, use_units = TRUE)
+getTable1Stats(hw1$sex)
+getTable1Stats(hw1$race)
+
+t1 <- list()
+t1[["Height"]] <-
+  getTable1Stats(hw1$height)
+  
+t1[["Weight"]] <-
+  getTable1Stats(hw1$weight)
+
+
+t1 <- c(t1,
+        list(getTable1Stats(hw1$sex)))
+
+t1 <- c(t1,
+        list(getTable1Stats(hw1$race)))
+
+htmlTable(mergeDesc(t1),
+          css.rgroup = "",
+          caption  = "Table1.Basic descriptive statistics from the hw1 dataset",
+          tfoot = "(Sex:0/1=female/male, Race:0/1=non-white/white)")
+
+```
+
