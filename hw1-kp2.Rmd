@@ -68,4 +68,4 @@ htmlTable(mergeDesc(t1),
           tfoot = "(Sex:0/1=female/male, Race:0/1=non-white/white)")
 
 ```
-
+Group 0 was indicated as Reference group and Group 1 as Case group.  
