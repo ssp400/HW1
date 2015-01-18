@@ -33,8 +33,8 @@ label(hw1$race) <- "Race"
 hw1$sex <- factor(hw1$sex, levels=0:1, labels=c("Female", "Male"))
 label(hw1$sex) <- "Sex"
 library(Gmisc)
-getDescriptionStatsBy(x = hw1$height, 
-                      by = hw1$group)
+#getDescriptionStatsBy(x = hw1$height, 
+ #                     by = hw1$group)
 getTable1Stats <- function(x, digits = 1, ...){
   getDescriptionStatsBy(x = x, 
                         by = hw1$group,
