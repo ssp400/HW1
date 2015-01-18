@@ -13,8 +13,7 @@ setwd("E:\\EB560\\hw")
 hw1=read.table(file="hw1data.csv", h=T,sep=",")
 #head(hw1)
 
-# For labelling we use the label()
-# function from the Hmisc package
+
 library(Hmisc)
 library(htmlTable)
 label(hw1$height) <- "Height"
@@ -44,10 +43,10 @@ getTable1Stats <- function(x, digits = 1, ...){
                         ...)
   
 }
-getTable1Stats(hw1$height, use_units = TRUE)
-getTable1Stats(hw1$weight, use_units = TRUE)
-getTable1Stats(hw1$sex)
-getTable1Stats(hw1$race)
+#getTable1Stats(hw1$height, use_units = TRUE)
+#getTable1Stats(hw1$weight, use_units = TRUE)
+#getTable1Stats(hw1$sex)
+#getTable1Stats(hw1$race)
 
 t1 <- list()
 t1[["Height"]] <-
